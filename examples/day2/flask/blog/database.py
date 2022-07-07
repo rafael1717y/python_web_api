@@ -1,8 +1,8 @@
+from flask import Flask
 from flask_pymongo import PyMongo
 
-mongo = PyMongo() # 
+mongo = PyMongo()  #
 
 
 def configure(app):
     mongo.init_app(app)
-

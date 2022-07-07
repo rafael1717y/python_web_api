@@ -1,12 +1,13 @@
 import click
 
 from blog.posts import (
-    get_all_posts, 
-    get_post_by_slug, 
-    new_post, 
-    update_post_by_slug, 
+    get_all_posts,
+    get_post_by_slug,
+    new_post,
+    update_post_by_slug,
     delete_post,
 )
+
 
 @click.group()
 def post():
@@ -22,12 +23,12 @@ def new(title, content):
     click.echo(f"New post created {new}")
 
 
-@post.command("list") # qdo passa com --
+@post.command("list")  # qdo passa com --
 def _list():
     """List all posts"""
     for post in get_all_posts():
         click.echo(post)
-        click.echo("-" * 30) # rich
+        click.echo("-" * 30)  # rich
 
 
 @post.command()
@@ -39,7 +40,7 @@ def get(slug):
 
 
 @post.command()
-@click.argument("slug") # qdo passa sozinho
+@click.argument("slug")  # qdo passa sozinho
 @click.option("--content", default=None, type=str)
 @click.option("--published", default=None, type=str)
 def update(slug, content, published):
@@ -61,10 +62,8 @@ def update(slug, content, published):
 def delete(slug, content, published):
     """Delete post by slug"""
     data = {}
-    
-
 
 
 def configure(app):
-    # adiciona só o grupo principal. 
+    # adiciona só o grupo principal.
     app.cli.add_command(post)

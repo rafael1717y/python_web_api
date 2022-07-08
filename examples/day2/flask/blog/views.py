@@ -27,8 +27,8 @@ bp = Blueprint("post", __name__, template_folder="templates")
 @bp.route("/")
 def index():
     posts = get_all_posts()
-    session['test'] = "ValorQualquer7878"
-    print(session['test'])
+    session["test"] = "ValorQualquer7878"
+    print(session["test"])
     return render_template("index.html.j2", posts=posts)
 
 
@@ -41,7 +41,7 @@ def detail(slug):  # post.detail
 
 
 @bp.route("/new", methods=["GET", "POST"])
-#@login_required(username="admin")
+# @login_required(username="admin")
 @login_required()
 def new():
     if request.method == "POST":

@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.forms import ModelForm 
 from django.http import HttpResponseRedirect
 from django.shortcuts import render 
@@ -13,6 +14,8 @@ class PostForm(ModelForm):
         fields = ['title', 'content', 'published']
 
 
+
+@login_required
 def new_post(request):
     if request.method == "POST":
         form = PostForm(request.POST)
@@ -28,6 +31,7 @@ def new_post(request):
 
 
 class PostList(ListView):
+    #decorations = [login_required]  # for class based view
     model = Post 
     template_name = "index.html"
     queryset = Post.objects.filter(published=True)  #List view para mostrar posts = True.    
